@@ -1,3 +1,4 @@
+</div>
 <div class="container">
 
     <hr>
@@ -15,7 +16,7 @@
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="{{asset('assets/js/jquery.js')}}"></script>
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
