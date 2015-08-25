@@ -21,3 +21,4 @@ Route::get('index', function()
 });
 Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');
+Route::get('Event', 'EventController@list_event');

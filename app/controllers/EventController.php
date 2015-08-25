@@ -16,8 +16,11 @@ class EventController extends \BaseController {
     public function showEvent() {
         return View::make('event_show');
     }
-
+    public function createEvent() {
+        return View::make('event_create');
+    }
     public function listEvent() {
+        
         return View::make('event_list');
     }
 
