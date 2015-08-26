@@ -95,6 +95,8 @@ class UserController extends \BaseController {
             // attempt to do the login
             if (Auth::attempt($user)) {
                 $id = Auth::user()->id;
+    
+                Session::put('client_id', Auth::user()->id_client);
                 return Redirect::intended('index/' . $id);
             } else {
                 // validation not successful, send back to form
