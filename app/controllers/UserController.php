@@ -61,8 +61,7 @@ class UserController extends \BaseController {
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('/')
-                        ->withErrors($validator)
-                        ->withInput(Input::except('password'));
+                        ->withErrors($validator);
         }
        }     
     }
@@ -73,10 +72,8 @@ class UserController extends \BaseController {
             'email_login' => 'required|email', // make sure the email is an actual email
             'password_login' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
         );
-
         // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
-
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
 
@@ -85,17 +82,17 @@ class UserController extends \BaseController {
                             ->withInput(Input::except('password_login')) 
                             ->withInput(Input::except('email_login'));
         } else {
-            //return Redirect::to('index');
-            // create our user data for the authentication
+          //return Redirect::to('index');
+          // create our user data for the authentication
             $user = array(
                 'email' => Input::get('email_login'),
                 'password' => Input::get('password_login')
             );           
-            // var_dump(Auth::attempt($user));
-            // attempt to do the login
+          // var_dump(Auth::attempt($user));
+          // attempt to do the login
             if (Auth::attempt($user)) {
-                $id = Auth::user()->id;
-                return Redirect::intended('index/' . $id);
+                //$id = Auth::user()->id;                
+                return Redirect::intended('index/');
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('/');

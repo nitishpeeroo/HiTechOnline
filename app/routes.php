@@ -29,4 +29,9 @@ Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');
 Route::get('logout', 'UserController@doLogout');
 
-
+// Profil
+Route::get('profil', function()
+{          
+	return View::make('profil');
+});
+Route::post('save_profil', 'ProfilController@doSave');
