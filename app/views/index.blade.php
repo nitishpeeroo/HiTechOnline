@@ -5,10 +5,15 @@
         <div class="col-md-6 index-bg">
 
         </div>
-        <div class="col-md-6">
-
+        <div class="col-md-6">            
             <h1>Déjà membre ?</h1>
             {{ Form::open(array('url' => 'Login')) }}
+            
+            <div>
+                 {{ $errors->first('password_login') }}
+                 {{ $errors->first('mail_login') }}
+             </div>
+            
             <div class="row">
                 <div class="col-md-4"><input class="form-control" name="email_login" id="email_login" type="email" placeholder="email" /></div>
                 <div class="col-md-4"><input class="form-control" name="password_login" id="password_login" type="password" placeholder="mot de passe"/></div>
@@ -27,7 +32,7 @@
                 <div class="col-md-6"><input class="form-control" name="prenom" id="prenom" type="text" placeholder="Prénom" /></div>
             </div>
             <div class="row"><div class="col-md-12"><input class="form-control" name="email" id="email" type="text" placeholder="Email" /></div></div>
-            <div class="row"><div class="col-md-12"><input class="form-control" name="password" id="password" type="text" placeholder="Mot de  passe" /></div></div>
+            <div class="row"><div class="col-md-12"><input class="form-control" name="password" id="password" type="password" placeholder="Mot de  passe" /></div></div>
             <h2>Adresse</h2>
             <div class="row">
                 <div class="col-md-6"><input class="form-control" name="adresse" id="adresse" type="text" placeholder="Adresse" /></div>

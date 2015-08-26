@@ -128,7 +128,8 @@ class HitTechDataBase extends Migration {
             $table->increments('id_evenement');
 	    $table->string('nom');
             $table->timestamp('debut_evenement');
-	    $table->timestamp('fin_evenement');           			
+	    $table->timestamp('fin_evenement'); 
+            $table->string('description_evenement');            
             });          
             Schema::create('produit_evenement', function($table){
             $table->increments('id');
@@ -136,6 +137,11 @@ class HitTechDataBase extends Migration {
 	    $table->integer('id_evenement');
             $table->double('quantite');
             $table->String('prix_unitaire');	                			
+            });
+            Schema::create('client_evenement', function($table){
+            $table->increments('id');
+            $table->integer('id_client');
+	    $table->integer('id_evenement');    	                			
             });
             //                    
 	}
