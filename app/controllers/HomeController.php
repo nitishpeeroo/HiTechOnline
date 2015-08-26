@@ -25,8 +25,17 @@ class HomeController extends BaseController {
 	}
          public function eventAll()
          {
-            $events = Evenement::all();          
-            return View::make('homepage')->with('events', $events);
+            $events = Evenement::all(); 
+            $produits_tab = '';
+            
+            foreach ($events as $event) {
+                $produits_evenement = DB::table('produit_evenement')
+                ->where('id_evenement','=', $event->id_evenement)->get();
+                $produits_tab[] = $produits_evenement;
+            }
+            
+            
+            return View::make('homepage')->with('events', $events)->with('produits_evenements', $produits_tab);
            
            } 
 }
