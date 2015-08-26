@@ -10,8 +10,8 @@
             <h1>Déjà membre ?</h1>
             {{ Form::open(array('url' => 'Login')) }}
             <div class="row">
-                <div class="col-md-4"><input class="form-control" name="email" id="email" type="email" placeholder="email" /></div>
-                <div class="col-md-4"><input class="form-control" name="password" id="password" type="password" placeholder="mot de passe"/></div>
+                <div class="col-md-4"><input class="form-control" name="email_login" id="email_login" type="email" placeholder="email" /></div>
+                <div class="col-md-4"><input class="form-control" name="password_login" id="password_login" type="password" placeholder="mot de passe"/></div>
 
 
                 <input class="btn btn-default" type="submit" value="Accèder aux ventes"/>

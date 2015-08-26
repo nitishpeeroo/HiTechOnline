@@ -19,7 +19,9 @@ Route::get('/', function()
 //{
 //	return View::make('homepage');
 //});
+Route::get('index', 'HomeController@eventAll');
+// User
 Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');
+Route::get('logout', 'UserController@doLogout');
 Route::get('Event', 'EventController@list_event');
-Route::get('index', 'HomeController@eventAll');

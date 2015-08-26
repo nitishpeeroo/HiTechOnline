@@ -59,6 +59,7 @@
                                 <li><a href="{{url('/profil')}}">Mes infos personnelles</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{url('/order')}}">Mes Commandes</a></li>
+                                <li><a href="{{url('/logout')}}">Deconexion</a></li>
                             </ul>
                         </li>
                         <li><a href="{{url('/cart')}}">Mon Panier</a></li>
