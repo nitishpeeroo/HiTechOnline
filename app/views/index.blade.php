@@ -26,7 +26,10 @@
 
 
             {{ Form::open(array('url' => 'Registration')) }}
+            <fieldset>
             <h1>Inscrivez vous gratuitement</h1>
+            <div>               
+             </div>
             <div class="row">
                 <div class="col-md-6"><input class="form-control" name="nom" id="nom" type="text" placeholder="Nom" /></div>
                 <div class="col-md-6"><input class="form-control" name="prenom" id="prenom" type="text" placeholder="Prénom" /></div>
@@ -42,6 +45,7 @@
                 <div class="col-md-6"><input class="form-control" name="code_postal" id="code_postal" type="text" placeholder="Code postal" /></div>
                 <div class="col-md-6"><input class="form-control" name="ville" id="ville" type="text" placeholder="Ville" /></div>
             </div>
+            </fieldset>
             <div class="row"><div class="col-md-12"><input class="btn btn-default" type="submit" value="S'inscrire et accéder aux ventes" /></div></div>
             {{ Form::close() }}
         </div>
