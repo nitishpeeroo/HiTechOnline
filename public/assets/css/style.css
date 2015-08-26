@@ -3,10 +3,18 @@ body {
     background: #ffffff !important;
     color: #bfbfbf !important;
     padding-top: 60px !important;
+    height: 100%;
+    
+}
+footer {
+    background: #000000;
 }
 .navbar-brand {
     color: #ecf0f1 !important;
     font-size: 25px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #ecf0f1 !important;
 }
 input {
     background: #ecf0f1 !important;
