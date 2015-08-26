@@ -14,6 +14,12 @@
 class UserController extends \BaseController {
     
     function doRegistration() {
+        // condition d'inscription
+        $rules = array(           
+            'email_login' => 'required|email', // make sure the email is an actual email
+            'password_login' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+        );
+        // On récupere  les infos du formulaire
         $nom = Input::get('nom');
         $prenom = Input::get('prenom');
         $email = strtolower(Input::get('email'));
@@ -21,27 +27,8 @@ class UserController extends \BaseController {
         $adresse = Input::get('adresse');
         $complement_adresse = Input::get('complement_adresse');
         $code_postal = Input::get('code_postal');
-        $ville = Input::get('ville');
-
-
-        // validate the info, create rules for the inputs
-        $rules = array(
-            'nom' => 'required|text',
-            'prenom' => 'required|text',
-            'email' => 'required|email',
-            'password' => 'required|min:3',
-            'adresse' => 'required|text',
-            'code_postal' => 'required|text',
-            'ville' => 'required|text'
-        );
-
-        // run the validation rules on the inputs from the form
-        $validator = Validator::make(Input::all(), $rules);
-
-        /* if ($validator->fails()) {
-          return Redirect::to('/');
-          } */
-
+        $ville = Input::get('ville'); 
+        
         $userdata = array(
             'nom' => $nom,
             'prenom' => $prenom,
@@ -53,34 +40,32 @@ class UserController extends \BaseController {
             'ville' => $ville,
             'isNewsLetter' => 0
         );
-        $user = User::create($userdata);
-
-        // Info de connexion
-        $user_con = array(
-            'email' => $email,
-            'password' => $password
-        );
-
-        return var_dump(Auth::attempt($user_con));
-        if (Auth::attempt($user_con)) {
-            $id = Auth::user()->id;
-            return var_dump($user_con);
+        // Create user
+        //$validator = Validator::make(Input::all(), $rules);
+        
+        if ($validator->fails()) {
+              echo 'champs non null';
+              return var_dump($userdata);
         } else {
-            //validation not successful, send back to form
-            return Redirect::to('/');
-            //return var_dump($user_con);
+            $user = User::create($userdata); 
+            $user_con = array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password')
+            );
+            if (Auth::attempt($user_con)) {               
+                return Redirect::intended('index/');
+            } else {
+                // validation not successful, send back to form
+                return Redirect::to('/');
         }
+       }     
     }
 
-    public function doLogin() {
-        $email = Input::get('email');
-        $password = Hash::make(Input::get('password'));
-
-
+    public function doLogin() {      
         // validate the info, create rules for the inputs
         $rules = array(
-            'email' => 'required|email', // make sure the email is an actual email
-            'password' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+            'email_login' => 'required|email', // make sure the email is an actual email
+            'password_login' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
         );
 
         // run the validation rules on the inputs from the form
@@ -96,10 +81,10 @@ class UserController extends \BaseController {
             //return Redirect::to('index');
             // create our user data for the authentication
             $user = array(
-                'email' => Input::get('email'),
-                'password' => Input::get('password')
-            );
-            /// var_dump(Auth::attempt($user));
+                'email' => Input::get('email_login'),
+                'password' => Input::get('password_login')
+            );           
+            // var_dump(Auth::attempt($user));
             // attempt to do the login
             if (Auth::attempt($user)) {
                 $id = Auth::user()->id;
@@ -107,12 +92,11 @@ class UserController extends \BaseController {
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('/');
-            }
+               }
         }
     }
 
     public function doLogout() {
-
         Auth::logout();
         Cache::flush();
         Session::clear();

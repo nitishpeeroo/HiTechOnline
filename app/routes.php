@@ -19,8 +19,14 @@ Route::get('/', function()
 //{
 //	return View::make('homepage');
 //});
-Route::post('Registration', 'UserController@doRegistration');
-Route::post('Login', 'UserController@doLogin');
+Route::get('index', 'HomeController@eventAll');
 Route::get('event/{event_id}/show', 'EventController@showEvent');
 Route::get('event/{event_id}/join', 'EventController@joinEvent');
-Route::get('index', 'HomeController@eventAll');
+
+
+// User
+Route::post('Registration', 'UserController@doRegistration');
+Route::post('Login', 'UserController@doLogin');
+Route::get('logout', 'UserController@doLogout');
+
+
