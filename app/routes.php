@@ -30,3 +30,5 @@ Route::post('Login', 'UserController@doLogin');
 Route::get('logout', 'UserController@doLogout');
 
 
+Route::get('best_seller', 'EventController@FindBestSeller');
+

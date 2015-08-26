@@ -15,33 +15,39 @@ class EventController extends \BaseController {
 
     public function showEvent($id) {
 
-        $produits_evenement = DB::table('produit_evenement')
+        $produits = DB::table('produit_evenement')
+                ->join('produit', 'produit_evenement.id_produit', '=', 'produit.id_produit')
+                ->where('id_evenement', '=', $id)
+                ->select('produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
+                ->get();
+
+        $evenement = DB::table('evenement')
                 ->where('id_evenement', '=', $id)
                 ->get();
 
-        foreach ($produits_evenement as $produits_event) {
-            $produit = DB::table('produit')
-                    ->where('id_produit', '=', $produits_event->id_produit)
-                    ->get();
-
-            $produits[] = $produit;
-        }
-
         return View::make('event_show')
                         ->with('event_id', $id)
-                        ->with('produits_evenement', $produits_evenement)
+                        ->with('evenements', $evenement)
                         ->with('produits', $produits);
     }
 
     public function joinEvent($id) {
-        
+
         $client_id = Session::get('client_id');
-  
+
         DB::table('client_evenement')->insert(
                 array('id_client' => $client_id, 'id_evenement' => $id)
         );
 
         return Redirect::to('index/');
+    }
+
+    public function FindBestSeller() {
+        return View::make('best_seller');
+        /* $last3events = DB::table('produit')
+          ->where('id_produit', '=', $produits_event->id_produit)
+          ->get(); */
+        //orderBy('id', 'DESC')->get();
     }
 
     public function createEvent() {
