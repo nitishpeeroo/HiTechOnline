@@ -15,9 +15,14 @@ class UserController extends \BaseController {
     
     function doRegistration() {
         // condition d'inscription
-        $rules = array(           
-            'email_login' => 'required|email', // make sure the email is an actual email
-            'password_login' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+        $rules = array(   
+            'nom' => 'required|min:1',
+            'prenom' => 'required|min:1',
+            'adresse' => 'required|min:1',
+            'code_postal' => 'required|min:5',
+            'ville' => 'required|min:1',
+            'email' => 'required|email', // make sure the email is an actual email
+            'password' => 'required|min:3' // password can only be alphanumeric and has to be greater than 3 characters
         );
         // On récupere  les infos du formulaire
         $nom = Input::get('nom');
@@ -41,11 +46,10 @@ class UserController extends \BaseController {
             'isNewsLetter' => 0
         );
         // Create user
-        //$validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), $rules);
         
         if ($validator->fails()) {
-              echo 'champs non null';
-              return var_dump($userdata);
+              return Redirect::to('/');
         } else {
             $user = User::create($userdata); 
             $user_con = array(
@@ -56,7 +60,9 @@ class UserController extends \BaseController {
                 return Redirect::intended('index/');
             } else {
                 // validation not successful, send back to form
-                return Redirect::to('/');
+                return Redirect::to('/')
+                        ->withErrors($validator)
+                        ->withInput(Input::except('password'));
         }
        }     
     }
@@ -75,8 +81,8 @@ class UserController extends \BaseController {
         if ($validator->fails()) {
 
             return Redirect::to('/')
-                            ->withErrors($validator) // send back all errors to the login form
-                            ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+                            ->withErrors($validator); // 
+                            //->withInput(Input::except('password_login')); 
         } else {
             //return Redirect::to('index');
             // create our user data for the authentication
