@@ -15,3 +15,10 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
+Route::get('index', function()
+{
+	return View::make('homepage');
+});
+Route::post('Registration', 'UserController@doRegistration');
+Route::post('Login', 'UserController@doLogin');
+Route::get('Event', 'EventController@list_event');
