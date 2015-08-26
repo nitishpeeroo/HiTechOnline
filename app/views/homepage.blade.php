@@ -1,3 +1,4 @@
-@extends('header')
+@extends('logged_header')
 
+espace membre
 @extends('footer')

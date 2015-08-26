@@ -2,7 +2,6 @@
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,6 +42,27 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos évènements <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{url('/best_seller')}}">Nos produits phares</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{url('/next_events')}}">Nos prochaines ventes</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon Compte <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{url('/profil')}}">Mes infos personnelles</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{url('/order')}}">Mes Commandes</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{url('/cart')}}">Mon Panier</a></li>
+                    </ul>
                     
                 </div>
                 <!-- /.navbar-collapse -->
