@@ -81,8 +81,9 @@ class UserController extends \BaseController {
         if ($validator->fails()) {
 
             return Redirect::to('/')
-                            ->withErrors($validator); // 
-                            //->withInput(Input::except('password_login')); 
+                            ->withErrors($validator)
+                            ->withInput(Input::except('password_login')) 
+                            ->withInput(Input::except('email_login'));
         } else {
             //return Redirect::to('index');
             // create our user data for the authentication
