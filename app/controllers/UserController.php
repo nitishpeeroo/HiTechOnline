@@ -12,7 +12,7 @@
  * @author pss
  */
 class UserController extends \BaseController {
-
+    
     function doRegistration() {
         $nom = Input::get('nom');
         $prenom = Input::get('prenom');
@@ -46,10 +46,9 @@ class UserController extends \BaseController {
             'nom' => $nom,
             'prenom' => $prenom,
             'email' => $email,
-            'identifiant' => $email,
             'password' => $password,
             'adresse' => $adresse,
-            'complment_adresse' => $complement_adresse,
+            'complement_adresse' => $complement_adresse,
             'code_postal' => $code_postal,
             'ville' => $ville,
             'isNewsLetter' => 0

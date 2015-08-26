@@ -59,7 +59,7 @@ class HitTechDataBase extends Migration {
             $table->string('email');
             $table->string('password');
             $table->string('adresse');
-            $table->string('complment_adresse');
+            $table->string('complement_adresse');
             $table->integer('code_postal');
             $table->string('ville');
             $table->boolean('isNewsLetter'); 

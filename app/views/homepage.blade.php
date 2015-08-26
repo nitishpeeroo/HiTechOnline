@@ -1,5 +1,5 @@
 <?php
-//{{var_dump(Auth::user())}}
+//var_dump($events);
 ?>
 @extends('logged_header')
 
@@ -8,7 +8,14 @@
 </div>
 
 <div class="col-md-12">
-    <h1>Nos 3 prochains évènements</h1>
+    <h1>Nos 3 prochains évènements</h1>  
+   
+    @foreach($events as $event)
+    <tr class="odd gradeX">
+        <td>{{{ $event->nom }}}</td>       
+    </tr>
+    @endforeach
+    
 </div>
 
 @extends('footer')

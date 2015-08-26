@@ -11,8 +11,8 @@
  *
  * @author pss
  */
-class Event extends Eloquent
+class Evenement extends Eloquent
 {
     protected $table = 'evenement';
-    protected $fillable = array('libelle_evenement','debut_evenement', 'fin_evenement');
+    protected $fillable = array('id_evenement', 'nom', 'debut_evenement', 'fin_evenement');
 }

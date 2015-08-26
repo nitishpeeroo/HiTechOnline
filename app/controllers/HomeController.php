@@ -23,5 +23,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('index');
 	}
-
+         public function eventAll()
+         {
+            $events = Evenement::all();          
+            return View::make('homepage')->with('events', $events);
+           
+           } 
 }
