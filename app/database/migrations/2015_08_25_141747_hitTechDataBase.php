@@ -98,9 +98,9 @@ class HitTechDataBase extends Migration {
          // livreur
             Schema::create('livreur', function($table){
             $table->increments('id_livreur');         
-            $table->integer('societe')->unsigned();
-            $table->integer('tarif')->unsigned();
-            $table->timestamp('date_estimation')->references('id_newsletter')->on('newsletter');          
+            $table->integer('societe');
+            $table->integer('tarif');
+            $table->timestamp('date_estimation');          
             });            
             Schema::create('commande_livreur', function($table){
             $table->increments('id_commande_livreur');
@@ -117,30 +117,27 @@ class HitTechDataBase extends Migration {
             });
             Schema::create('detail_livreur', function($table){
             $table->increments('id');
-	    $table->interger('id_detail');
+	    $table->integer('id_detail');
             $table->integer('id_livreur');
             $table->string('valeur');
             $table->integer('id_commande')->unsigned();            
             $table->foreign('id_commande')->references('id_commande')->on('commande');                    
             });
-           //
+            //           
 	    Schema::create('evenement', function($table){
             $table->increments('id_evenement');
 	    $table->string('nom');
             $table->timestamp('debut_evenement');
-	    $table->timestamp('fin_evenement'); 
-            $table->timestamp(); 			
-            });
-            //
+	    $table->timestamp('fin_evenement');           			
+            });          
             Schema::create('produit_evenement', function($table){
             $table->increments('id');
-            $table->increments('id_produit');
-	    $table->string('id_evenement');
+            $table->integer('id_produit');
+	    $table->integer('id_evenement');
             $table->double('quantite');
-            $table->double('prix_unitaire');	    
-            $table->timestamp(); 			
+            $table->String('prix_unitaire');	                			
             });
-            
+            //                    
 	}
 
 	/**
@@ -153,12 +150,19 @@ class HitTechDataBase extends Migration {
 		Schema::drop('acteur');
                 Schema::drop('produit');
                 Schema::drop('caracteristique');
-                Schema::drop('categorie');
-                Schema::drop('client');
                 Schema::drop('produit_caracteristique');
+                Schema::drop('categorie');
+                Schema::drop('client');               
                 Schema::drop('newsletter');
                 Schema::drop('client_newsletter');
-                
+                Schema::drop('commande');//////////////////////////////////////
+                Schema::drop('ligne_commande');
+                Schema::drop('livreur');
+                Schema::drop('commande_livreur');
+                Schema::drop('detail');
+                Schema::drop('detail_livreur');
+                Schema::drop('evenement');
+                Schema::drop('produit_evenement');
                 
 	}
 
