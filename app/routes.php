@@ -21,5 +21,6 @@ Route::get('/', function()
 //});
 Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');
-Route::get('Event', 'EventController@list_event');
+Route::get('event/{event_id}/show', 'EventController@showEvent');
+Route::get('event/{event_id}/join', 'EventController@joinEvent');
 Route::get('index', 'HomeController@eventAll');

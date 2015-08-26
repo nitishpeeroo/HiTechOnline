@@ -30,12 +30,15 @@ class HomeController extends BaseController {
             
             foreach ($events as $event) {
                 $produits_evenement = DB::table('produit_evenement')
-                ->where('id_evenement','=', $event->id_evenement)->get();
+                ->where('id_evenement','=', $event->id_evenement)
+                        ->get();
                 $produits_tab[] = $produits_evenement;
             }
             
             
-            return View::make('homepage')->with('events', $events)->with('produits_evenements', $produits_tab);
+            return View::make('homepage')
+                    ->with('events', $events)
+                    ->with('produits_evenements', $produits_tab);
            
            } 
 }
