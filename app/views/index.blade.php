@@ -31,7 +31,7 @@
             <h2>Adresse</h2>
             <div class="row">
                 <div class="col-md-6"><input class="form-control" name="adresse" id="adresse" type="text" placeholder="Adresse" /></div>
-                <div class="col-md-6"><input class="form-control" name="complment_adresse" id="complement_adresse" type="text" placeholder="Complement d'adresse" /></div>
+                <div class="col-md-6"><input class="form-control" name="complement_adresse" id="complement_adresse" type="text" placeholder="Complement d'adresse" /></div>
             </div>
             <div class="row">
                 <div class="col-md-6"><input class="form-control" name="code_postal" id="code_postal" type="text" placeholder="Code postal" /></div>

@@ -19,7 +19,7 @@ class UserController extends \BaseController {
         $email = strtolower(Input::get('email'));
         $password = Hash::make(Input::get('password'));
         $adresse = Input::get('adresse');
-        $complement_adresse = Input::get('complment_adresse');
+        $complement_adresse = Input::get('complement_adresse');
         $code_postal = Input::get('code_postal');
         $ville = Input::get('ville');
 
