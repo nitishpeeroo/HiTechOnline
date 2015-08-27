@@ -11,6 +11,7 @@
  *
  * @author pss
  */
+
 class cartController extends \BaseController {
 
     public function addToCart($event_id) {
@@ -62,7 +63,7 @@ class cartController extends \BaseController {
                     'quantite' => 1,
                     'id_commande' => $commande->id
                 );
-                $ligne_commande = Ligne_commande::create($data);
+                $ligne_commande = LigneCommande::create($data);
             }
         }
 

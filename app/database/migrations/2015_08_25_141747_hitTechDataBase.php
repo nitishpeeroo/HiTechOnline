@@ -91,6 +91,7 @@ class HitTechDataBase extends Migration {
             $table->integer('id_produit');
             $table->integer('quantite');
             $table->timestamp('date_commande');
+            $table->timestamps();
         });
         // livreur
         Schema::create('livreur', function($table) {
@@ -98,6 +99,7 @@ class HitTechDataBase extends Migration {
             $table->integer('societe');
             $table->integer('tarif');
             $table->timestamp('date_estimation');
+            $table->timestamps();
         });
         Schema::create('commande_livreur', function($table) {
             $table->increments('id');
