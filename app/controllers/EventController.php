@@ -61,8 +61,5 @@ class EventController extends \BaseController {
 
         return View::make('event_list');
     }
-     public function currentEvent() {
-
-        return View::make('event_list');
-    }
+   
 }

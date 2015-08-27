@@ -22,8 +22,7 @@ class HitTechDataBase extends Migration {
             });	                      
             // Table Produit
             Schema::create('produit', function($table){           
-            $table->increments('id');
-            $table->integer('id_produit_caracteristique');
+            $table->increments('id');            
             $table->double('quantite');
             $table->integer('id_categorie');
             $table->string('image');
@@ -33,7 +32,7 @@ class HitTechDataBase extends Migration {
          // Caractéristique
             Schema::create('caracteristique', function($table){
             $table->increments('id');
-            $table->string('type_caracteristique');
+            $table->Sring('type_caracteristique');
             $table->timestamps();
             });               
          // Produit caracteristique
@@ -41,7 +40,7 @@ class HitTechDataBase extends Migration {
             $table->increments('id');
             $table->integer('id_produit');
             $table->integer('id_carateristique');
-            $table->string('valeur');  
+            $table->string('valeur'); 
             $table->timestamps();
             });
          // categorie
@@ -82,13 +81,15 @@ class HitTechDataBase extends Migration {
          // commande
             Schema::create('commande', function($table){
             $table->increments('id');
-            $table->integer('id_client');            
+            $table->integer('id_client'); 
+            $table->timestamps();
             }); 
             // ligne de commande
             Schema::create('ligne_commande', function($table){
             $table->increments('id');
             $table->integer('id_client');
             $table->integer('id_produit');
+            $table->integer('id_command');
             $table->integer('quantite');
             $table->timestamp('date_commande');
             });           
@@ -102,7 +103,8 @@ class HitTechDataBase extends Migration {
             Schema::create('commande_livreur', function($table){
             $table->increments('id');
             $table->integer('id_commande');
-            $table->integer('id_livreur');                   
+            $table->integer('id_livreur'); 
+            $table->timestamps();
             });
 	    Schema::create('detail', function($table){
             $table->increments('id');
@@ -119,6 +121,7 @@ class HitTechDataBase extends Migration {
 	    Schema::create('evenement', function($table){
             $table->increments('id');
 	    $table->string('nom');
+            $table->string('description_evenement');
             $table->timestamp('debut_evenement');
 	    $table->timestamp('fin_evenement'); 
             $table->string('description_evenement');            
