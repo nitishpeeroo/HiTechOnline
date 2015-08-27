@@ -58,12 +58,12 @@ class cartController extends \BaseController {
             foreach ($c_array as $cart_line) {
                 $data = array(
                     'id_client' => $user->id,
-                    'id_produit' => $cart_line->id,
+                    'id_produit' => $cart_line['id'],
                     'quantite' => 1,
                     'id_commande' => $commande->id
                 );
+                $ligne_commande = Ligne_commande::create($data);
             }
-            $ligne_commande = Ligne_commande::create($data);
         }
 
 
