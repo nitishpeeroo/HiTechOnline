@@ -15,14 +15,14 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
-//Route::get('index', function()
+//Route::get('edit_profil', function()
 //{
-//	return View::make('homepage');
+//	return View::make('index');
 //});
+// event
 Route::get('index', 'HomeController@eventAll');
 Route::get('event/{event_id}/show', 'EventController@showEvent');
-Route::get('event/{event_id}/join', 'EventController@joinEvent');
-
+Route::post('event/join', 'EventController@joinEvent');
 
 // User
 Route::post('Registration', 'UserController@doRegistration');
@@ -30,8 +30,5 @@ Route::post('Login', 'UserController@doLogin');
 Route::get('logout', 'UserController@doLogout');
 
 // Profil
-Route::get('profil', function()
-{          
-	return View::make('profil');
-});
+Route::get('edit_profil', 'ProfilController@doEdit');
 Route::post('save_profil', 'ProfilController@doSave');

@@ -11,9 +11,9 @@
     <div class="evenement-container col-md-12">
         @foreach($events as $event)
         <div class="evenement row">
-            <h3>{{ $event->nom}}</h3>
-            Début : {{ $event->debut_evenement}} <br />
-            <a class="btn btn-turquoise" href="{{ url('event/'.$event->id_evenement.'/join') }}">Je participe</a>
+            <a href="{{ url('event/'.$event->id_evenement.'/show') }}"><h3>{{ $event->nom}}</h3></a>
+            Début : {{ $event->debut_evenement}} | 
+            <a id="event_id{{$event->id_evenement}}" class="btn btn-turquoise joinEvent" href="#">Je participe</a>
         </div>
         @endforeach
     </div>

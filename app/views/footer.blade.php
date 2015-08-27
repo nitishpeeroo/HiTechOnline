@@ -21,6 +21,8 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
+<script src="{{asset('assets/js/hitech.js')}}"></script>
+
 </body>
 
 </html>

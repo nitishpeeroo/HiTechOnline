@@ -11,18 +11,23 @@ footer {
 .evenement-container {
     overflow-y: auto;
 }
+
+.evenement {
+    margin: 5px;
+    width: 90%;
+    background: #ECF0F1;
+    color: #37474F;
+}
+.evenement a {
+    color: #37474F;
+}
 .btn-turquoise {
     background: #1abc9c !important;
-    color: #ecf0f1;
+    color: #ecf0f1 !important;
 }
 .btn-turquoise:hover {
     background: #000000 !important;
-    color: #ffffff;
-}
-.evenement {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    margin: 5px;
-    width: 90%;
+    color: #ffffff !important;
 }
 .navbar-brand {
     color: #ecf0f1 !important;
@@ -36,6 +41,7 @@ input {
     border: none !important;
     height: 30px;
 }
+
 input[type=submit] {
     background: #1abc9c !important;
     color: #ffffff;
@@ -53,4 +59,25 @@ input[type=submit] {
 .index-bg {
     height: 500px;
     background: url('../img/bg_content.jpg') no-repeat center center;
+}
+.redColor {
+    color: red;
+    font-weight: bold;
+}
+.produit {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    height: 300px;
+    margin: 10px;
+    background: url('../img/playstation41.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    padding: 0px !important;
+}
+.produit-text {
+    position: absolute;
+    bottom: 0px;
+    background: rgba(255,255,255,0.9);
+    width: 101%;
+    left: -1px;
+    color: #474747;
 }

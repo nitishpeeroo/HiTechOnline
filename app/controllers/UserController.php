@@ -57,7 +57,7 @@ class UserController extends \BaseController {
                 'password' => Input::get('password')
             );
             if (Auth::attempt($user_con)) {               
-                return Redirect::intended('index/');
+                return Redirect::intended('index');
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('/')
@@ -93,8 +93,7 @@ class UserController extends \BaseController {
             if (Auth::attempt($user)) {              
                 $id = Auth::user()->id;   
                 Session::put('client_id', Auth::user()->id_client);
-                return Redirect::intended('index/' . $id);
-
+                return Redirect::intended('index');
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('/');
