@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder {
 
 
         DB::table('client')->insert(array(
-            array('nom' => 'nirmalasingam', 'prenom' => 'nemalaupan', 'email' => 'nirmalasingam@outlook.fr', 'password' => 123456, 'adresse' => '88 avenue de rosny', 'complement_adresse' => 'BIS', 'code_postal' => '93130', 'ville' => 'noisy', 'isNewsLetter' => 1)
+            array('nom' => 'nirmalasingam', 'prenom' => 'nemalaupan', 'email' => 'nirmalasingam@outlook.fr', 'password' => '$2y$10$twSAqR.bjNRI7k7PPmYZdOraXRLfj.IykaifKRd4yNl2ET0fEjHxG', 'adresse' => '88 avenue de rosny', 'complement_adresse' => 'BIS', 'code_postal' => '93130', 'ville' => 'noisy', 'isNewsLetter' => 1)
         ));
 
         DB::table('evenement')->insert(array(

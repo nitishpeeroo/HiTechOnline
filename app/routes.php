@@ -41,3 +41,6 @@ Route::get('cart', 'CartController@showCart');
 Route::post('event/{event_id}/addCart', 'CartController@addToCart');
 Route::get('confirm_cart', 'CartController@confirmCart');
 Route::get('cart_confirmed', 'CartController@confirmedCart');
+
+//Mes commandes
+Route::get('order', 'ProfilController@showOrder');

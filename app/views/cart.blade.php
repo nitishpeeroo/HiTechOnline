@@ -1,13 +1,10 @@
 @extends('logged_header')
-<?php
-var_dump($cart);
-?>
 
 <div class="col-md-offset-2 col-md-8">
     <h1>Mon Panier</h1>
     <?php
     $priceTotal = 0;
-    if (!empty($cart)) {
+    if (!empty($cart['items'])) {
         ?>
 
         <div class="bar-div row">
@@ -30,6 +27,9 @@ var_dump($cart);
         <div class="row">
             <a class="btn btn-turquoise pull-right" href="{{ url('confirm_cart') }}">Acheter</a> 
         </div>
+    <?php } else { ?>
+        Votre panier semble vide 
+        <a class="btn btn-turquoise" href="{{ url('index') }}">Faites des achats</a> 
     <?php } ?>
 
 </div>
