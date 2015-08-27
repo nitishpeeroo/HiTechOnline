@@ -27,6 +27,7 @@ class HitTechDataBase extends Migration {
             $table->integer('id_categorie');
             $table->string('image');
             $table->string('description');
+            $table->string('nom');
             $table->timestamps();
         });
         // Caractéristique

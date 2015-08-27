@@ -66,7 +66,9 @@ class cartController extends \BaseController {
                 $ligne_commande = LigneCommande::create($data);
             }
         }
-
+        
+        Session::forget('cart');
+        Session::put('cart.items', '');
 
         return View::make('confirmed_cart');
     }

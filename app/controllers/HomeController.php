@@ -27,18 +27,22 @@ class HomeController extends BaseController {
          {
             $events = Evenement::all(); 
             $produits_tab = '';
-            
+            $id_client = Session::get('client_id');  
             //
-            $event_clients = ClientEvenement::where('id_client', '=', 2)->get();
             $event_current = array();
-            $date = date('m/d/Y h:i:s a', time()); 
-            foreach ($event_clients as $event_client) {
-                $evt = DB::table('evenement')
-                ->where('id','=', $event_client->id_evenement) 
-                        ->where('debut_evenement','>',$date)
-                        ->get();               
-                $event_current[] = $evt;
-            }                              
+            $isevt = false;
+            if($id_client !== null){
+                $event_clients = ClientEvenement::where('id_client', '=', $id_client)->get();          
+                $date = date('m/d/Y h:i:s a', time()); 
+                foreach ($event_clients as $event_client) {
+                    $evt = DB::table('evenement')
+                    ->where('id','=', $event_client->id_evenement) 
+                            ->where('debut_evenement','>',$date)
+                            ->get();               
+                    $event_current[] = $evt;
+                } 
+                if(count($event_current[0]) != 0){$isevt = true;}
+            }
             foreach ($events as $event) {
                 $produits_evenement = DB::table('produit_evenement')
                 ->where('id_evenement','=', $event->id_evenement)                       
@@ -48,31 +52,9 @@ class HomeController extends BaseController {
             return View::make('homepage')
                     ->with('events', $events)
                     ->with('produits_evenements', $produits_tab)
-                    ->with('event_current', $event_current);
+                    ->with('event_current', $event_current)
+                    ->with('isevt', $isevt);
            
            } 
-           
-           
-           /**
-            $event_clients = ClientEvenement::where('id_client', '=', 2)->get();
-            $event_client_array = array();
-            $event_client_ids = array();
-            foreach ($event_clients as $event_client) {                
-                array_push($event_client_array, $event_client);               
-            }       
-            foreach ($event_client_array as $evtClient) {                
-                $event_client_ids[]  = $evtClient;              
-            } 
-            // seletion des évenement courrent
-            $event_current = array();
-           // for($event_client_ids as $evt_event) {
-             $date = date('m/d/Y h:i:s a', time());          
-           for($i = 0 ; $i < count($event_client_ids) ; $i++ ) {
-                       $evt = Evenement::where('id', '=', $event_client_ids[$i]['id_evenement'])
-                        ->where('debut_evenement','>',$date)
-                        ->get();               
-                array_push($event_current, $evt);
-            }  
-            //
-            */
+                             
 }

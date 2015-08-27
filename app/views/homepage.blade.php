@@ -2,12 +2,12 @@
 <div class="col-md-8">
    <h1>Ventes disponibles</h1>
     <div class="evenement-container col-md-12">         
-      @if( count($event_current[0]) != 0 )
+      @if($isevt)
           @for ($i = 1; $i < count($event_current); $i++)     
                 <div class="evenement row">
                     <a href="{{ url('event/'.$event_current[$i][0]->id.'/show') }}"><h3>{{ $event_current[$i][0]->nom}}</h3></a>
                     Début : {{ $event_current[$i][0]->debut_evenement}} | 
-                    <a id="event_id{{$event_current[$i][0]->id}}" class="btn btn-turquoise joinEvent" href="#">Voir les produits</a>          
+                    <a id="event_id{{$event_current[$i][0]->id}}" class="btn btn-turquoise " href="#">Voir les produits</a>          
                 </div>
         @endfor
       @endif
