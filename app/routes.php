@@ -34,3 +34,8 @@ Route::get('best_seller', 'EventController@FindBestSeller');
 // Profil
 Route::get('edit_profil', 'ProfilController@doEdit');
 Route::post('save_profil', 'ProfilController@doSave');
+
+
+//Panier
+Route::get('cart', 'CartController@showCart');
+Route::post('event/{event_id}/addCart', 'CartController@addToCart');

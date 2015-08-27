@@ -1,7 +1,7 @@
 
 body {
     background: #ffffff !important;
-    color: #bfbfbf !important;
+    color: #37474F !important;
     padding-top: 60px !important;
     min-height: 100% !important;
 }
@@ -80,4 +80,9 @@ input[type=submit] {
     width: 101%;
     left: -1px;
     color: #474747;
+}
+.bar-div {
+    background: #ECF0F1;
+    color: #37474F;
+    margin: 10px;
 }

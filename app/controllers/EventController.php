@@ -18,7 +18,7 @@ class EventController extends \BaseController {
         $produits = DB::table('produit_evenement')
                 ->join('produit', 'produit_evenement.id_produit', '=', 'produit.id_produit')
                 ->where('id_evenement', '=', $id)
-                ->select('produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
+                ->select('produit.id_produit', 'produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
                 ->get();
 
         $evenement = DB::table('evenement')
@@ -30,7 +30,7 @@ class EventController extends \BaseController {
                         ->with('evenements', $evenement)
                         ->with('produits', $produits);
     }
-
+    
     public function joinEvent() {
 
         if (Request::ajax()) {

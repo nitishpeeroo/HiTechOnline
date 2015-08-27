@@ -93,6 +93,7 @@ class UserController extends \BaseController {
             if (Auth::attempt($user)) {              
                 $id = Auth::user()->id;   
                 Session::put('client_id', Auth::user()->id_client);
+                Session::put('cart.items', '');
                 return Redirect::intended('index');
             } else {
                 // validation not successful, send back to form
