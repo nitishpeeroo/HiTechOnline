@@ -44,7 +44,7 @@ class EventController extends \BaseController {
             //return Redirect::to('index/');
         }
     }
-
+    
     public function FindBestSeller() {
         return View::make('best_seller');
         /* $last3events = DB::table('produit')

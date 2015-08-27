@@ -29,6 +29,8 @@ Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');
 Route::get('logout', 'UserController@doLogout');
 
+Route::get('best_seller', 'EventController@FindBestSeller');
+
 // Profil
 Route::get('edit_profil', 'ProfilController@doEdit');
 Route::post('save_profil', 'ProfilController@doSave');
