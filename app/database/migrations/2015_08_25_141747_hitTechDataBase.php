@@ -5,23 +5,22 @@ use Illuminate\Database\Migrations\Migration;
 
 class HitTechDataBase extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-	     // Table acteur 
-	    Schema::create('acteur', function($table){           
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up() {
+        // Table acteur 
+        Schema::create('acteur', function($table) {
             $table->increments('id');
             $table->string('role');
             $table->string('identifiant');
-            $table->string('password');           
+            $table->string('password');
             $table->timestamps();
-            });	                      
-            // Table Produit
-            Schema::create('produit', function($table){           
+        });
+        // Table Produit
+        Schema::create('produit', function($table) {
             $table->increments('id');
             $table->integer('id_produit_caracteristique');
             $table->double('quantite');
@@ -29,30 +28,30 @@ class HitTechDataBase extends Migration {
             $table->string('image');
             $table->string('description');
             $table->timestamps();
-            });
-         // Caractéristique
-            Schema::create('caracteristique', function($table){
+        });
+        // Caractéristique
+        Schema::create('caracteristique', function($table) {
             $table->increments('id');
             $table->string('type_caracteristique');
             $table->timestamps();
-            });               
-         // Produit caracteristique
-            Schema::create('produit_caracteristique', function($table){
+        });
+        // Produit caracteristique
+        Schema::create('produit_caracteristique', function($table) {
             $table->increments('id');
             $table->integer('id_produit');
             $table->integer('id_carateristique');
-            $table->string('valeur');  
+            $table->string('valeur');
             $table->timestamps();
-            });
-         // categorie
-            Schema::create('categorie', function($table){
+        });
+        // categorie
+        Schema::create('categorie', function($table) {
             $table->increments('id');
             $table->string('libelle');
-            $table->integer('id_parent'); 
+            $table->integer('id_parent');
             $table->timestamps();
-            });
-         // client
-            Schema::create('client', function($table){
+        });
+        // client
+        Schema::create('client', function($table) {
             $table->increments('id');
             $table->string('nom');
             $table->string('prenom');
@@ -62,107 +61,112 @@ class HitTechDataBase extends Migration {
             $table->string('complement_adresse');
             $table->integer('code_postal');
             $table->string('ville');
-            $table->boolean('isNewsLetter'); 
+            $table->boolean('isNewsLetter');
             $table->timestamps();
-            });
-         // newsletter
-            Schema::create('newsletter', function($table){
+        });
+        // newsletter
+        Schema::create('newsletter', function($table) {
             $table->increments('id');
             $table->string('objet');
             $table->string('message');
-            $table->timestamp('horodateur');   
+            $table->timestamp('horodateur');
             $table->timestamps();
-            });
-            Schema::create('client_newsletter', function($table){
-            $table->increments('id');         
-            $table->integer('id_newsletter');
-            $table->integer('id_client');            
-            $table->timestamps();
-            });
-         // commande
-            Schema::create('commande', function($table){
+        });
+        Schema::create('client_newsletter', function($table) {
             $table->increments('id');
-            $table->integer('id_client');            
-            }); 
-            // ligne de commande
-            Schema::create('ligne_commande', function($table){
+            $table->integer('id_newsletter');
+            $table->integer('id_client');
+            $table->timestamps();
+        });
+        // commande
+        Schema::create('commande', function($table) {
+            $table->increments('id');
+            $table->integer('id_client');
+            $table->timestamps();
+        });
+        // ligne de commande
+        Schema::create('ligne_commande', function($table) {
             $table->increments('id');
             $table->integer('id_client');
             $table->integer('id_produit');
             $table->integer('quantite');
             $table->timestamp('date_commande');
-            });           
-         // livreur
-            Schema::create('livreur', function($table){
-            $table->increments('id');         
+        });
+        // livreur
+        Schema::create('livreur', function($table) {
+            $table->increments('id');
             $table->integer('societe');
             $table->integer('tarif');
-            $table->timestamp('date_estimation');          
-            });            
-            Schema::create('commande_livreur', function($table){
+            $table->timestamp('date_estimation');
+        });
+        Schema::create('commande_livreur', function($table) {
             $table->increments('id');
             $table->integer('id_commande');
-            $table->integer('id_livreur');                   
-            });
-	    Schema::create('detail', function($table){
+            $table->integer('id_livreur');
+            $table->timestamps();
+        });
+        Schema::create('detail', function($table) {
             $table->increments('id');
-	    $table->string('type');
-            $table->integer('id_commande');                               
-            });
-            Schema::create('detail_livreur', function($table){
+            $table->string('type');
+            $table->integer('id_commande');
+            $table->timestamps();
+        });
+        Schema::create('detail_livreur', function($table) {
             $table->increments('id');
-            $table->integer('id_livreur');           
+            $table->integer('id_livreur');
             $table->integer('id_commande');
             $table->string('valeur');
-            });
-            //           
-	    Schema::create('evenement', function($table){
+            $table->timestamps();
+        });
+        //           
+        Schema::create('evenement', function($table) {
             $table->increments('id');
-	    $table->string('nom');
+            $table->string('nom');
             $table->timestamp('debut_evenement');
-	    $table->timestamp('fin_evenement'); 
-            $table->string('description_evenement');            
-            });          
-            Schema::create('produit_evenement', function($table){
+            $table->timestamp('fin_evenement');
+            $table->string('description_evenement');
+            $table->timestamps();
+        });
+        Schema::create('produit_evenement', function($table) {
             $table->increments('id');
             $table->integer('id_produit');
-	    $table->integer('id_evenement');
+            $table->integer('id_evenement');
             $table->double('quantite');
-            $table->String('prix_unitaire');	                			
-            });
-            Schema::create('client_evenement', function($table){
+            $table->String('prix_unitaire');
+            $table->timestamps();
+        });
+        Schema::create('client_evenement', function($table) {
             $table->increments('id');
             $table->integer('id_client');
-	    $table->integer('id_evenement');    	                			
-            });
-            //                    
-	}
+            $table->integer('id_evenement');
+            $table->timestamps();
+        });
+        //                    
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('acteur');
-                Schema::drop('produit');
-                Schema::drop('caracteristique');
-                Schema::drop('produit_caracteristique');
-                Schema::drop('categorie');
-                Schema::drop('client');               
-                Schema::drop('newsletter');
-                Schema::drop('client_newsletter');
-                Schema::drop('commande');//////////////////////////////////////
-                Schema::drop('ligne_commande');
-                Schema::drop('livreur');
-                Schema::drop('commande_livreur');
-                Schema::drop('detail');
-                Schema::drop('detail_livreur');
-                Schema::drop('evenement');
-                Schema::drop('produit_evenement');
-                 Schema::drop('client_evenement');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down() {
+        Schema::drop('acteur');
+        Schema::drop('produit');
+        Schema::drop('caracteristique');
+        Schema::drop('produit_caracteristique');
+        Schema::drop('categorie');
+        Schema::drop('client');
+        Schema::drop('newsletter');
+        Schema::drop('client_newsletter');
+        Schema::drop('commande'); //////////////////////////////////////
+        Schema::drop('ligne_commande');
+        Schema::drop('livreur');
+        Schema::drop('commande_livreur');
+        Schema::drop('detail');
+        Schema::drop('detail_livreur');
+        Schema::drop('evenement');
+        Schema::drop('produit_evenement');
+        Schema::drop('client_evenement');
+    }
 
 }

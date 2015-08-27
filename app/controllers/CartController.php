@@ -44,4 +44,16 @@ class cartController extends \BaseController {
                         ->with('user', $user);
     }
 
+    public function confirmedCart() {
+        $id = Session::get('client_id');
+        $user = User::find($id);
+        $data = array(
+            'id_client' => $user->id
+        );
+
+        $commande = Commande::create($data);
+        return $commande;
+        return View::make('confirmed_cart');
+    }
+
 }
