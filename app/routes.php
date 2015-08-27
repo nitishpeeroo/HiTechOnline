@@ -23,7 +23,7 @@ Route::get('/', function()
 Route::get('index', 'HomeController@eventAll');
 Route::get('event/{event_id}/show', 'EventController@showEvent');
 Route::post('event/join', 'EventController@joinEvent');
-
+Route::post('event/current', 'EventController@currentEvent');
 // User
 Route::post('Registration', 'UserController@doRegistration');
 Route::post('Login', 'UserController@doLogin');

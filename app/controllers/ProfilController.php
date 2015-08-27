@@ -3,13 +3,40 @@
 class ProfilController extends \BaseController {
     
     
-    function doEdit(){  
-    $id = Session::get('client_id');       
-    $user = User::find($id); 
-      // $nom =  $user->nom;
-       return var_dump($user);
-//	return View::make('profil')
-//                ->with('nom',$nom);
+    function doEdit(){
+     // Initialisation des champs 
+     $nom =  "";
+     $prenom =  "";
+     $email =  "";
+     $adresse =  "";
+     $complement_adresse =  "";
+     $code_postal =  ""; 
+     $ville =  "";
+     $isNewsLetter = false;
+     // Infos de l'acteur de la session
+     $id = Session::get('client_id');       
+     $user = User::find($id); 
+     if($user != null && $user !="" ){
+         $nom =  $user->nom;
+         $prenom =  $user->prenom;
+         $email =  $user->email;
+         $adresse =  $user->adresse;
+         $complement_adresse =  $user->complement_adresse;
+         $code_postal =  $user->code_postal;
+         $ville =  $user->ville; 
+         $isNewsLetterval = $user->isNewsLetter;      
+         if($isNewsLetterval == 1 ) $isNewsLetter = true;
+     }  
+             
+	return View::make('profil')
+             ->with('nom',$nom)
+             ->with('prenom',$prenom)
+             ->with('email',$email)
+             ->with('adresse',$adresse)
+             ->with('complement_adresse',$complement_adresse)
+             ->with('code_postal',$code_postal)
+             ->with('ville',$ville)
+             ->with('isNewsLetter',$isNewsLetter);
     }
     
     function doSave() {
@@ -28,6 +55,6 @@ class ProfilController extends \BaseController {
         
         $user->save();
         
-        return var_dump($user);
+        return Redirect::intended('index');
     }
 }
