@@ -13,16 +13,16 @@
  */
 class cartController extends \BaseController {
 
-    public function addToCart() {
+    public function addToCart($event_id) {
         if (Request::ajax()) {
             $data = Input::all();
 
-            //$product = Produit::find($data['product_id']);
+            $product = Produit::find($data['product_id']);
 
             $parsedata = [
                 'id' => $data['product_id'],
-                'price' => $data['price']
-                //'product' => $product
+                'price' => $data['price'],
+                'nom' => $product->description
             ];
 
             Session::push('cart.items', $parsedata);
@@ -35,6 +35,13 @@ class cartController extends \BaseController {
 
         return View::make('cart')
                         ->with('cart', $cart);
+    }
+
+    public function confirmCart() {
+        $id = Session::get('client_id');
+        $user = User::find($id);
+        return View::make('confirm_cart')
+                        ->with('user', $user);
     }
 
 }

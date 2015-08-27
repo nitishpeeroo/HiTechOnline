@@ -39,3 +39,4 @@ Route::post('save_profil', 'ProfilController@doSave');
 //Panier
 Route::get('cart', 'CartController@showCart');
 Route::post('event/{event_id}/addCart', 'CartController@addToCart');
+Route::get('confirm_cart', 'CartController@confirmCart');

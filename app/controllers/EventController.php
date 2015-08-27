@@ -16,13 +16,13 @@ class EventController extends \BaseController {
     public function showEvent($id) {
 
         $produits = DB::table('produit_evenement')
-                ->join('produit', 'produit_evenement.id_produit', '=', 'produit.id_produit')
+                ->join('produit', 'produit_evenement.id_produit', '=', 'produit.id')
                 ->where('id_evenement', '=', $id)
-                ->select('produit.id_produit', 'produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
+                ->select('produit.id', 'produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
                 ->get();
 
         $evenement = DB::table('evenement')
-                ->where('id_evenement', '=', $id)
+                ->where('id', '=', $id)
                 ->get();
 
         return View::make('event_show')
