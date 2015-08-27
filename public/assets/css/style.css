@@ -1,7 +1,7 @@
 
 body {
     background: #ffffff !important;
-    color: #bfbfbf !important;
+    color: #37474F !important;
     padding-top: 60px !important;
     min-height: 100% !important;
 }
@@ -26,7 +26,7 @@ footer {
     color: #ecf0f1 !important;
 }
 .btn-turquoise:hover {
-    background: #000000 !important;
+    //background: #000000 !important;
     color: #ffffff !important;
 }
 .navbar-brand {
@@ -80,4 +80,10 @@ input[type=submit] {
     width: 101%;
     left: -1px;
     color: #474747;
+}
+.bar-div {
+    background: #ECF0F1;
+    color: #37474F;
+    margin: 10px;
+    padding: 10px;
 }

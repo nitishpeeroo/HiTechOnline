@@ -9,3 +9,16 @@ $('.joinEvent').on('click', function(e) {
         data: data,
     }, "json");
 });
+$('.addCart').on('click',function(e) {
+    e.stopPropagation();
+    var id = $(this).attr('id').split('_');
+    var product_id = id[1],
+    price = id[2],
+    data = 'product_id='+product_id+'&price='+price;
+    
+    $.ajax({
+        type: "POST",
+        url: "addCart",
+        data: data,
+    }, "json");
+});
