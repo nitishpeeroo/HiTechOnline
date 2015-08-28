@@ -1,7 +1,10 @@
 <?php
 
 class ProfilController extends \BaseController {    
-    
+    /**
+     * Editer les infos de l'utilisateur
+     * @return type
+     */
     function doEdit(){
      // Initialisation des champs 
      $nom =  "";
@@ -38,7 +41,10 @@ class ProfilController extends \BaseController {
              ->with('isNewsLetter',$isNewsLetter);
 
     }
-
+   /**
+    * Enregister les infos du client
+    * @return type
+    */
     public function doSave() {
 
         $id = Session::get('client_id');
@@ -54,11 +60,14 @@ class ProfilController extends \BaseController {
         $user->ville = Input::get('ville');
 
         $user->save();
-        
+        // Retourner la vue index
         return Redirect::to('index');
         
     }
-
+    /**
+     * Liste des commande
+     * @return type
+     */
     public function showOrder() {
         //récucpération de l'ID du client
         $id = Session::get('client_id');
@@ -73,17 +82,7 @@ class ProfilController extends \BaseController {
                 ->where('commande.id_client', '=', $id)
                 ->select('commande.id','commande.created_at')
                 ->get();
-
-        
-
-        /*foreach ($commandes as $commande) {
-            $lignes_commande = DB::table('ligne_commande')
-                    ->where('id_client', '=', $id)
-                    ->where('id_command', '=', $commande->id)
-                    ->get();
-            $lignes_commandes[] = $lignes_commande;
-        }*/
-
+        // Retourner la vue liste des commandes
         return View::make('order')
                         ->with('commandes', $commandes);
     }

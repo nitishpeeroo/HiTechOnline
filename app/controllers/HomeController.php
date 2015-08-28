@@ -1,19 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+class HomeController extends BaseController {	
 
 	public function showWelcome()
 	{
@@ -23,14 +10,20 @@ class HomeController extends BaseController {
 	{
 		return View::make('index');
 	}
+        /**
+         * Controlleur des évenements 
+         */           
         public function eventAll()
         {
             $events = Evenement::all(); 
             $produits_tab = '';
+            // On récupére l'id de l'acteur connecté
             $id_client = Session::get('client_id');  
             //
             $event_current = array();
             $isevt = false;
+            
+            // Liste des évenements dont il s'est inscrit 
             if($id_client !== null){
                 $event_clients = ClientEvenement::where('id_client', '=', $id_client)->get();          
                 $date = date('m/d/Y h:i:s a', time()); 
@@ -48,7 +41,10 @@ class HomeController extends BaseController {
                 ->where('id_evenement','=', $event->id_evenement)                       
                         ->get();
                 $produits_tab[] = $produits_evenement;
-            }               
+            }    
+            // retourner la vue homepage avec les variables 
+            // Liste des événements
+            // Liste des événements courent
             return View::make('homepage')
                     ->with('events', $events)
                     ->with('produits_evenements', $produits_tab)

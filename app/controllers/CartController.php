@@ -65,12 +65,6 @@ class cartController extends \BaseController {
                 );
 
                 $ligne_commande = LigneCommande::create($data);
-
-                // on baisse le stock qui a été commander
-                //TODO get event_id
-                /* DB::table('produit_evenement')
-                  ->decrement('quantite')
-                  ->where('id_produit','=',$cart_line['id']); */
             }
         }
 
