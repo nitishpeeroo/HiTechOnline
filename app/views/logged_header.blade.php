@@ -38,7 +38,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">HI TECH ONLINE</a>
+                    <a class="navbar-brand" href="{{url('/index')}}">HI TECH ONLINE
+                        <div class="logo-img"></div>
+                        <div class="slogan">
+                            La technologie accèssible en un clic
+                        </div>
+                    </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

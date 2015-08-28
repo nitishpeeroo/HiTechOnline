@@ -66,27 +66,23 @@ class ProfilController extends \BaseController {
         $lignes_commandes = [];
 
 
-        $test = DB::table('commande')
-                ->select(DB::raw('sum(ligne_commande.prix), commande.id'))
+        $commandes = DB::table('commande')
                 ->where('commande.id_client', '=', $id)
-                ->join('ligne_commande', 'ligne_commande.id_commande', '=', 'commande.id')
-                ->join('produit', 'ligne_commande.id_produit', '=', 'produit.id')
-                ->groupBy('commande.id')
+                ->select('commande.id','commande.created_at')
                 ->get();
 
-        return var_dump($test);
+        
 
-        foreach ($commandes as $commande) {
+        /*foreach ($commandes as $commande) {
             $lignes_commande = DB::table('ligne_commande')
                     ->where('id_client', '=', $id)
-                    ->where('id_commande', '=', $commande->id)
+                    ->where('id_command', '=', $commande->id)
                     ->get();
             $lignes_commandes[] = $lignes_commande;
-        }
+        }*/
 
         return View::make('order')
-                        ->with('commandes', $commandes)
-                        ->with('lignes_commandes', $lignes_commandes);
+                        ->with('commandes', $commandes);
     }
 
 }

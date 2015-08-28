@@ -11,7 +11,6 @@
  *
  * @author pss
  */
-
 class cartController extends \BaseController {
 
     public function addToCart($event_id) {
@@ -61,14 +60,22 @@ class cartController extends \BaseController {
                     'id_client' => $user->id,
                     'id_produit' => $cart_line['id'],
                     'quantite' => 1,
-                    'id_commande' => $commande->id
+                    'id_command' => $commande->id
                 );
+
                 $ligne_commande = LigneCommande::create($data);
+
+                // on baisse le stock qui a été commander
+                //TODO get event_id
+                /* DB::table('produit_evenement')
+                  ->decrement('quantite')
+                  ->where('id_produit','=',$cart_line['id']); */
             }
         }
-        
+
         Session::forget('cart');
         Session::put('cart.items', '');
+
 
         return View::make('confirmed_cart');
     }
