@@ -15,12 +15,14 @@ class EventController extends \BaseController {
 
     public function showEvent($id) {
 
+        //on récupère les produits
         $produits = DB::table('produit_evenement')
                 ->join('produit', 'produit_evenement.id_produit', '=', 'produit.id')
                 ->where('id_evenement', '=', $id)
                 ->select('produit.id', 'produit.image', 'produit.description', 'produit_evenement.prix_unitaire', 'produit_evenement.quantite')
                 ->get();
 
+        //on récupère les evenements
         $evenement = DB::table('evenement')
                 ->where('id', '=', $id)
                 ->get();
@@ -30,38 +32,53 @@ class EventController extends \BaseController {
                         ->with('evenements', $evenement)
                         ->with('produits', $produits);
     }
-    
+
     public function joinEvent() {
 
         if (Request::ajax()) {
             $data = Input::all();
             $client_id = Session::get('client_id');
 
+            //on lie un client à un evenement dans la base
             DB::table('client_evenement')->insert(
                     array('id_client' => $client_id, 'id_evenement' => $data['event_id'])
             );
-
-            //return Redirect::to('index/');
         }
     }
-    
-    public function FindBestSeller() {      
-         $produits = DB::table('ligne_commande')
+
+    public function FindBestSeller() {
+        //on prend les 3 derniers evenements
+        $produits = DB::table('ligne_commande')
                 ->groupBy('evenement_id')
-                ->orderBy('evenement_id','desc')
+                ->orderBy('evenement_id', 'desc')
                 ->take(3)
                 ->get();
-             var_dump(count($produits));
-              $event_top = '';
-             for($i = 0; $i < count($produits) ; $i++ )  {                           
-                    $event_top[] =  $produits[$i]->evenement_id ;                  
-                }             
-            $produit_top = DB::table('ligne_commande')
-                        ->select('id_produit')             
-                        ->whereIn('evenement_id',$event_top)
-                        ->groupBy('id_produit')
-                        ->get();                                                            
-             return var_dump($produit_top);           
+        //var_dump(count($produits));
+        $event_top = '';
+        for ($i = 0; $i < count($produits); $i++) {
+            $event_top[] = $produits[$i]->evenement_id;
+        }
+        
+        // on prends les 10 produits des 3derniers evenements
+        $produit_top = DB::table('ligne_commande')
+                ->select('id_produit')
+                ->whereIn('evenement_id', $event_top)
+                ->groupBy('id_produit')
+                ->take(10)
+                ->get();
+        
+          $id_produits = '';
+        for ($i = 0; $i < count($produit_top); $i++) {
+            $id_produits[] = $produit_top[$i]->id_produit;
+        }
+        
+        
+        $bestseller = DB::table('produit')
+                ->whereIn('id', $id_produits)
+                ->get();
+        
+        return View::make('best_seller')
+                ->with('produits',$bestseller);
     }
 
     public function createEvent() {
@@ -72,5 +89,5 @@ class EventController extends \BaseController {
 
         return View::make('event_list');
     }
-   
+
 }

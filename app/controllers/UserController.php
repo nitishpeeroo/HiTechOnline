@@ -34,6 +34,7 @@ class UserController extends \BaseController {
         $code_postal = Input::get('code_postal');
         $ville = Input::get('ville'); 
         
+        //on charge les données avant la création
         $userdata = array(
             'nom' => $nom,
             'prenom' => $prenom,
@@ -103,6 +104,8 @@ class UserController extends \BaseController {
     }
 
     public function doLogout() {
+        
+        //on se deconnecte, on efface tout
         Auth::logout();
         Cache::flush();
         Session::clear();
