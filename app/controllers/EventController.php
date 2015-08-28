@@ -46,15 +46,15 @@ class EventController extends \BaseController {
     }
     
     public function FindBestSeller() {
-        return View::make('best_seller');
+        //return View::make('best_seller');
         /* $last3events = DB::table('produit')
           ->where('id_produit', '=', $produits_event->id_produit)
           ->get(); */
         //orderBy('id', 'DESC')->get();
         
              $produits = DB::table('ligne_commande')
-                     ->max('evenement_id')
-                ->groupBy('id_evenement')
+                ->groupBy('evenement_id')
+                     ->orderBy('evenement_id','desc')
                      ->take(3)
                ->get();
              
