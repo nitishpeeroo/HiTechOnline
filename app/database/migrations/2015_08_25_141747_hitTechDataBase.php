@@ -33,7 +33,7 @@ class HitTechDataBase extends Migration {
         // Caractéristique
         Schema::create('caracteristique', function($table) {
             $table->increments('id');
-            $table->Sring('type_caracteristique');
+            $table->string('type_caracteristique');
             $table->timestamps();
         });
         // Produit caracteristique
@@ -91,6 +91,7 @@ class HitTechDataBase extends Migration {
             $table->integer('id_produit');
             $table->integer('id_command');
             $table->integer('quantite');
+            $table->double('prix');
             $table->timestamp('date_commande');
             $table->timestamps();
         });

@@ -23,8 +23,8 @@ class HomeController extends BaseController {
 	{
 		return View::make('index');
 	}
-         public function eventAll()
-         {
+        public function eventAll()
+        {
             $events = Evenement::all(); 
             $produits_tab = '';
             $id_client = Session::get('client_id');  
@@ -53,8 +53,7 @@ class HomeController extends BaseController {
                     ->with('events', $events)
                     ->with('produits_evenements', $produits_tab)
                     ->with('event_current', $event_current)
-                    ->with('isevt', $isevt);
-           
+                    ->with('isevt', $isevt);           
            } 
                              
 }

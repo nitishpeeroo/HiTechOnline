@@ -45,20 +45,23 @@ class EventController extends \BaseController {
         }
     }
     
-    public function FindBestSeller() {
-        //return View::make('best_seller');
-        /* $last3events = DB::table('produit')
-          ->where('id_produit', '=', $produits_event->id_produit)
-          ->get(); */
-        //orderBy('id', 'DESC')->get();
-        
-             $produits = DB::table('ligne_commande')
+    public function FindBestSeller() {      
+         $produits = DB::table('ligne_commande')
                 ->groupBy('evenement_id')
-                     ->orderBy('evenement_id','desc')
-                     ->take(3)
-               ->get();
-             
-             return var_dump($produits);
+                ->orderBy('evenement_id','desc')
+                ->take(3)
+                ->get();
+             var_dump(count($produits));
+              $event_top = '';
+             for($i = 0; $i < count($produits) ; $i++ )  {                           
+                    $event_top[] =  $produits[$i]->evenement_id ;                  
+                }             
+            $produit_top = DB::table('ligne_commande')
+                        ->select('id_produit')             
+                        ->whereIn('evenement_id',$event_top)
+                        ->groupBy('id_produit')
+                        ->get();                                                            
+             return var_dump($produit_top);           
     }
 
     public function createEvent() {
