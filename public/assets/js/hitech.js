@@ -14,7 +14,8 @@ $('.addCart').on('click',function(e) {
     var id = $(this).attr('id').split('_');
     var product_id = id[1],
     price = id[2],
-    data = 'product_id='+product_id+'&price='+price;
+    evenement_id = id[3],
+    data = 'product_id='+product_id+'&price='+price+'&evenement_id='+evenement_id;
     
     $.ajax({
         type: "POST",

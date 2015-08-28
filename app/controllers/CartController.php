@@ -22,7 +22,8 @@ class cartController extends \BaseController {
             $parsedata = [
                 'id' => $data['product_id'],
                 'price' => $data['price'],
-                'nom' => $product->description
+                'nom' => $product->description,
+                'evenement_id' => $data['evenement_id'] 
             ];
 
             Session::push('cart.items', $parsedata);

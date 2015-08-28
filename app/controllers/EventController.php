@@ -51,6 +51,14 @@ class EventController extends \BaseController {
           ->where('id_produit', '=', $produits_event->id_produit)
           ->get(); */
         //orderBy('id', 'DESC')->get();
+        
+             $produits = DB::table('ligne_commande')
+                     ->max('evenement_id')
+                ->groupBy('id_evenement')
+                     ->take(3)
+               ->get();
+             
+             return var_dump($produits);
     }
 
     public function createEvent() {

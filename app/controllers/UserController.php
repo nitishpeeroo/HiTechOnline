@@ -90,7 +90,7 @@ class UserController extends \BaseController {
             );           
           // var_dump(Auth::attempt($user));
           // attempt to do the login
-            if (Auth::attempt($user)) {              
+            if (Auth::attempt($user) || (Auth::viaRemember())) {              
                 $id = Auth::user()->id;   
                 Session::put('client_id', Auth::user()->id);
                 Session::put('cart.items', '');

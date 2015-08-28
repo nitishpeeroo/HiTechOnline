@@ -54,6 +54,9 @@ class ProfilController extends \BaseController {
         $user->ville = Input::get('ville');
 
         $user->save();
+        
+        return Redirect::to('index');
+        
     }
 
     public function showOrder() {

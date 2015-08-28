@@ -18,7 +18,7 @@
                 </div>
                 </div>
                 <div class="col-md-12">
-                <a id="product_{{$produit->id}}_{{$produit->prix_unitaire}}" class="btn btn-turquoise addCart pull-right" href="#">Ajouter au panier</a>  
+                <a id="product_{{$produit->id}}_{{$produit->prix_unitaire}}_{{$evenement->id}}" class="btn btn-turquoise addCart pull-right" href="#">Ajouter au panier</a>  
                 </div>
             </div>
         </div>
